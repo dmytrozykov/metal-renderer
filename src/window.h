@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "ns_ptr.h"
+
 struct GLFWwindow;
 
 namespace CA {
@@ -21,7 +23,7 @@ public:
     void PollEvents() const noexcept;
     [[nodiscard]] bool ShouldClose() const noexcept;
 
-    void AddMetalLayer(CA::MetalLayer *layer) const noexcept;
+    void AddMetalLayer(const NSPtr<CA::MetalLayer> &layer) const noexcept;
 
 private:
     GLFWwindow *handle = nullptr;

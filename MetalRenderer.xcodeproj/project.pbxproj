@@ -49,6 +49,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE1A04D72E95183E0083E243 /* shaders */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = shaders;
+			sourceTree = "<group>";
+		};
 		CE1AFD452E94EEFB0083E243 /* src */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = src;
@@ -85,6 +90,7 @@
 		CE1AFD3A2E94EEFB0083E243 = {
 			isa = PBXGroup;
 			children = (
+				CE1A04D72E95183E0083E243 /* shaders */,
 				CE1AFD452E94EEFB0083E243 /* src */,
 				CE1AFD442E94EEFB0083E243 /* Products */,
 				CE1A02E92E94F09E0083E243 /* .clang-format */,
@@ -120,6 +126,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				CE1A04D72E95183E0083E243 /* shaders */,
 				CE1AFD452E94EEFB0083E243 /* src */,
 			);
 			name = MetalRenderer;
@@ -318,7 +325,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/third_party/metal-cpp",
 					"$(PROJECT_DIR)/third_party/glfw-3.4/include",
-					"$(PROJECT_DIR)/third_party/glm",
 					"$(PROJECT_DIR)/third_party/stb_image",
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -339,7 +345,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/third_party/metal-cpp",
 					"$(PROJECT_DIR)/third_party/glfw-3.4/include",
-					"$(PROJECT_DIR)/third_party/glm",
 					"$(PROJECT_DIR)/third_party/stb_image",
 				);
 				LIBRARY_SEARCH_PATHS = (

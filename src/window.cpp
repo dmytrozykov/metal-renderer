@@ -2,6 +2,8 @@
 
 #include <GLFW/glfw3.h>
 
+#include <Metal/Metal.hpp>
+#include <QuartzCore/CAMetalLayer.hpp>
 #include <stdexcept>
 
 #include "glfw_bridge.h"
@@ -23,6 +25,10 @@ bool Window::ShouldClose() const noexcept {
     return glfwWindowShouldClose(handle);
 }
 
-void Window::AddMetalLayer(CA::MetalLayer *layer) const noexcept {
-    GLFWBridge::addLayer(handle, layer);
+void Window::AddMetalLayer(const NSPtr<CA::MetalLayer> &layer) const noexcept {
+    int width, height;
+    glfwGetFramebufferSize(handle, &width, &height);
+    layer->setDrawableSize(CGSizeMake(width, height));
+
+    GLFWBridge::addLayer(handle, layer.get());
 }
