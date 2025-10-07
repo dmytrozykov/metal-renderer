@@ -30,8 +30,11 @@ void Renderer::Run() noexcept {
     }
 }
 
-void Renderer::CreateDevice() noexcept {
+void Renderer::CreateDevice() {
     device_ = make_ns_ptr(MTL::CreateSystemDefaultDevice());
+    if (!device_) {
+        throw std::runtime_error("Failed to create a device.");
+    }
 }
 
 void Renderer::CreateWindow() {
@@ -40,8 +43,14 @@ void Renderer::CreateWindow() {
                                        WindowParameters::kHeight);
 }
 
-void Renderer::CreateLayer() noexcept {
+void Renderer::CreateLayer() {
+    assert(device_ != nullptr);
+
     layer_ = make_ns_ptr(CA::MetalLayer::layer());
+    if (!layer_) {
+        throw std::runtime_error("Failed to create a layer.");
+    }
+
     layer_->setDevice(device_.get());
     layer_->setPixelFormat(MTL::PixelFormatBGRA8Unorm);
     window_->AddMetalLayer(layer_);
@@ -66,6 +75,8 @@ void Renderer::CreateVertexBuffer() {
 }
 
 void Renderer::CreateCommandQueue() {
+    assert(device_ != nullptr);
+
     command_queue_ = make_ns_ptr(device_->newCommandQueue());
     if (!command_queue_) {
         throw std::runtime_error("Failed to create a command queue.");
@@ -96,11 +107,13 @@ void Renderer::CreateRenderPipeline() {
     }
     render_pipeline_desc->setFragmentFunction(fragment_shader.get());
 
+    assert(layer_ != nullptr);
     const MTL::PixelFormat pixel_format = layer_->pixelFormat();
     render_pipeline_desc->colorAttachments()->object(0)->setPixelFormat(
         pixel_format);
 
     NS::Error *error;
+    assert(device_ != nullptr);
     render_pso_ = make_ns_ptr(
         device_->newRenderPipelineState(render_pipeline_desc.get(), &error));
     if (error) {
@@ -113,6 +126,7 @@ void Renderer::CreateRenderPipeline() {
 }
 
 NSPtr<MTL::Function> Renderer::LoadShader(const std::string &title) noexcept {
+    assert(default_library_ != nullptr);
     const auto *ns_function_name =
         NS::String::string(title.c_str(), NS::ASCIIStringEncoding);
     return make_ns_ptr(default_library_->newFunction(ns_function_name));
@@ -121,6 +135,7 @@ NSPtr<MTL::Function> Renderer::LoadShader(const std::string &title) noexcept {
 void Renderer::Render() { SendRenderCommand(); }
 
 void Renderer::SendRenderCommand() {
+    assert(command_queue_ != nullptr);
     command_buffer_ = make_ns_ptr(command_queue_->commandBuffer());
     if (!command_buffer_) {
         throw std::runtime_error("Failed to create a command buffer.");
@@ -152,6 +167,9 @@ void Renderer::SendRenderCommand() {
 
 void Renderer::EncodeRenderCommand(
     const NSPtr<MTL::RenderCommandEncoder> &command_encoder) {
+    assert(render_pso_ != nullptr);
+    assert(vertex_buffer_ != nullptr);
+
     command_encoder->setRenderPipelineState(render_pso_.get());
     command_encoder->setVertexBuffer(vertex_buffer_.get(), 0, 0);
     const MTL::PrimitiveType primitive_type = MTL::PrimitiveTypeTriangle;

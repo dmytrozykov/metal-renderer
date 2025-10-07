@@ -21,9 +21,9 @@ public:
     Renderer &operator=(Renderer &&)      = delete;
 
 private:
-    void CreateDevice() noexcept;
+    void CreateDevice();
     void CreateWindow();
-    void CreateLayer() noexcept;
+    void CreateLayer();
     void CreateDefaultLibrary();
     void CreateVertexBuffer();
     void CreateCommandQueue();
