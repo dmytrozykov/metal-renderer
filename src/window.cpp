@@ -10,8 +10,8 @@
 
 Window::Window(const std::string &title, int width, int height) {
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-    handle = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
-    if (!handle) {
+    handle_ = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
+    if (!handle_) {
         throw std::runtime_error("Failed to create GLFW window.");
     }
 }
@@ -19,16 +19,16 @@ Window::Window(const std::string &title, int width, int height) {
 void Window::PollEvents() const noexcept { glfwPollEvents(); }
 
 bool Window::ShouldClose() const noexcept {
-    if (!handle) {
+    if (!handle_) {
         return true;
     }
-    return glfwWindowShouldClose(handle);
+    return glfwWindowShouldClose(handle_);
 }
 
 void Window::AddMetalLayer(const NSPtr<CA::MetalLayer> &layer) const noexcept {
     int width, height;
-    glfwGetFramebufferSize(handle, &width, &height);
+    glfwGetFramebufferSize(handle_, &width, &height);
     layer->setDrawableSize(CGSizeMake(width, height));
 
-    GLFWBridge::addLayer(handle, layer.get());
+    GLFWBridge::add_layer(handle_, layer.get());
 }

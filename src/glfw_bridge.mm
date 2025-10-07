@@ -8,9 +8,9 @@
 #include <QuartzCore/QuartzCore.h>
 
 namespace GLFWBridge {
-void addLayer(GLFWwindow *window, CA::MetalLayer *layer) noexcept {
-    NSWindow *cocoaWindow = glfwGetCocoaWindow(window);
-    cocoaWindow.contentView.layer = (__bridge CAMetalLayer *)layer;
-    cocoaWindow.contentView.wantsLayer = YES;
+void add_layer(GLFWwindow *window, CA::MetalLayer *layer) noexcept {
+    NSWindow *cocoa_window = glfwGetCocoaWindow(window);
+    cocoa_window.contentView.layer = (__bridge CAMetalLayer *)layer;
+    cocoa_window.contentView.wantsLayer = YES;
 }
 }  // namespace GLFWBridge

@@ -7,9 +7,9 @@
 #include <string>
 
 namespace WindowParameters {
-constexpr std::string title = "Metal Renderer";
-constexpr int width         = 800;
-constexpr int height        = 600;
+constexpr std::string kTitle = "Metal Renderer";
+constexpr int kWidth         = 800;
+constexpr int kHeight        = 600;
 }  // namespace WindowParameters
 
 Renderer::Renderer() {
@@ -23,33 +23,33 @@ Renderer::Renderer() {
 }
 
 void Renderer::Run() noexcept {
-    while (!window->ShouldClose()) {
-        drawable = make_ns_ptr(layer->nextDrawable());
+    while (!window_->ShouldClose()) {
+        drawable_ = make_ns_ptr(layer_->nextDrawable());
         Render();
-        window->PollEvents();
+        window_->PollEvents();
     }
 }
 
 void Renderer::CreateDevice() noexcept {
-    device = make_ns_ptr(MTL::CreateSystemDefaultDevice());
+    device_ = make_ns_ptr(MTL::CreateSystemDefaultDevice());
 }
 
 void Renderer::CreateWindow() {
-    window = std::make_unique<Window>(WindowParameters::title,
-                                      WindowParameters::width,
-                                      WindowParameters::height);
+    window_ = std::make_unique<Window>(WindowParameters::kTitle,
+                                       WindowParameters::kWidth,
+                                       WindowParameters::kHeight);
 }
 
 void Renderer::CreateLayer() noexcept {
-    layer = make_ns_ptr(CA::MetalLayer::layer());
-    layer->setDevice(device.get());
-    layer->setPixelFormat(MTL::PixelFormatBGRA8Unorm);
-    window->AddMetalLayer(layer);
+    layer_ = make_ns_ptr(CA::MetalLayer::layer());
+    layer_->setDevice(device_.get());
+    layer_->setPixelFormat(MTL::PixelFormatBGRA8Unorm);
+    window_->AddMetalLayer(layer_);
 }
 
 void Renderer::CreateDefaultLibrary() {
-    defaultLibrary = make_ns_ptr(device->newDefaultLibrary());
-    if (!defaultLibrary) {
+    default_library_ = make_ns_ptr(device_->newDefaultLibrary());
+    if (!default_library_) {
         throw std::runtime_error("Failed to create a default library.");
     }
 }
@@ -58,101 +58,104 @@ void Renderer::CreateVertexBuffer() {
     const simd::float3 vertices[] = {
         {-0.5f, -0.5f, 0.0f}, {0.5f, -0.5f, 0.0f}, {0.0f, 0.5f, 0.0f}};
 
-    vertexBuffer = make_ns_ptr(device->newBuffer(
+    vertex_buffer_ = make_ns_ptr(device_->newBuffer(
         &vertices, sizeof(vertices), MTL::ResourceStorageModeShared));
-    if (!vertexBuffer) {
+    if (!vertex_buffer_) {
         throw std::runtime_error("Failed to create a vertex buffer.");
     }
 }
 
 void Renderer::CreateCommandQueue() {
-    commandQueue = make_ns_ptr(device->newCommandQueue());
-    if (!commandQueue) {
+    command_queue_ = make_ns_ptr(device_->newCommandQueue());
+    if (!command_queue_) {
         throw std::runtime_error("Failed to create a command queue.");
     }
 }
 
 void Renderer::CreateRenderPipeline() {
-    const auto renderPipelineDesc =
+    const auto render_pipeline_desc =
         make_ns_ptr(MTL::RenderPipelineDescriptor::alloc()->init());
-    if (!renderPipelineDesc) {
+    if (!render_pipeline_desc) {
         throw std::runtime_error(
             "Failed to create a render pipeline descriptor.");
     }
 
-    const auto *nsLabel =
+    const auto *ns_label =
         NS::String::string("Rendering Pipeline", NS::ASCIIStringEncoding);
-    renderPipelineDesc->setLabel(nsLabel);
+    render_pipeline_desc->setLabel(ns_label);
 
-    const auto vertexShader = LoadShader("vertexShader");
-    if (!vertexShader) {
+    const auto vertex_shader = LoadShader("vertexShader");
+    if (!vertex_shader) {
         throw std::runtime_error("Failed to load a vertex shader.");
     }
-    renderPipelineDesc->setVertexFunction(vertexShader.get());
+    render_pipeline_desc->setVertexFunction(vertex_shader.get());
 
-    const auto fragmentShader = LoadShader("fragmentShader");
-    if (!fragmentShader) {
+    const auto fragment_shader = LoadShader("fragmentShader");
+    if (!fragment_shader) {
         throw std::runtime_error("Failed to load a fragment shader.");
     }
-    renderPipelineDesc->setFragmentFunction(fragmentShader.get());
+    render_pipeline_desc->setFragmentFunction(fragment_shader.get());
 
-    MTL::PixelFormat pixelFormat = layer->pixelFormat();
-    renderPipelineDesc->colorAttachments()->object(0)->setPixelFormat(
-        pixelFormat);
+    const MTL::PixelFormat pixel_format = layer_->pixelFormat();
+    render_pipeline_desc->colorAttachments()->object(0)->setPixelFormat(
+        pixel_format);
 
     NS::Error *error;
-    renderPSO = make_ns_ptr(
-        device->newRenderPipelineState(renderPipelineDesc.get(), &error));
-    if (!renderPSO) {
+    render_pso_ = make_ns_ptr(
+        device_->newRenderPipelineState(render_pipeline_desc.get(), &error));
+    if (error) {
         std::cerr << "Error: " << error << std::endl;
+        error->release();
+    }
+    if (!render_pso_) {
         throw std::runtime_error("Failed to create a render pipeline.");
     }
 }
 
 NSPtr<MTL::Function> Renderer::LoadShader(const std::string &title) noexcept {
-    const auto *nsFunctionName =
+    const auto *ns_function_name =
         NS::String::string(title.c_str(), NS::ASCIIStringEncoding);
-    return make_ns_ptr(defaultLibrary->newFunction(nsFunctionName));
+    return make_ns_ptr(default_library_->newFunction(ns_function_name));
 }
 
 void Renderer::Render() { SendRenderCommand(); }
 
 void Renderer::SendRenderCommand() {
-    commandBuffer = make_ns_ptr(commandQueue->commandBuffer());
-    if (!commandBuffer) {
+    command_buffer_ = make_ns_ptr(command_queue_->commandBuffer());
+    if (!command_buffer_) {
         throw std::runtime_error("Failed to create a command buffer.");
     }
 
-    const auto renderPassDesc =
+    const auto render_pass_desc =
         make_ns_ptr(MTL::RenderPassDescriptor::alloc()->init());
-    MTL::RenderPassColorAttachmentDescriptor *colorAttach =
-        renderPassDesc->colorAttachments()->object(0);
-    colorAttach->setTexture(drawable->texture());
-    colorAttach->setLoadAction(MTL::LoadActionClear);
-    colorAttach->setClearColor(
+    MTL::RenderPassColorAttachmentDescriptor *color_attach =
+        render_pass_desc->colorAttachments()->object(0);
+    color_attach->setTexture(drawable_->texture());
+    color_attach->setLoadAction(MTL::LoadActionClear);
+    color_attach->setClearColor(
         MTL::ClearColor(41.0f / 255.0f, 42.0f / 255.0f, 48.0f / 255.0f, 1.0));
-    colorAttach->setStoreAction(MTL::StoreActionStore);
+    color_attach->setStoreAction(MTL::StoreActionStore);
 
-    const auto commandEncoder =
-        make_ns_ptr(commandBuffer->renderCommandEncoder(renderPassDesc.get()));
-    if (!commandEncoder) {
+    const auto command_encoder = make_ns_ptr(
+        command_buffer_->renderCommandEncoder(render_pass_desc.get()));
+    if (!command_encoder) {
         throw std::runtime_error("Failed to create a command encoder.");
     }
 
-    EncodeRenderCommand(commandEncoder);
-    commandEncoder->endEncoding();
+    EncodeRenderCommand(command_encoder);
+    command_encoder->endEncoding();
 
-    commandBuffer->presentDrawable(drawable.get());
-    commandBuffer->commit();
-    commandBuffer->waitUntilCompleted();
+    command_buffer_->presentDrawable(drawable_.get());
+    command_buffer_->commit();
+    command_buffer_->waitUntilCompleted();
 }
 
 void Renderer::EncodeRenderCommand(
-    const NSPtr<MTL::RenderCommandEncoder> &commandEncoder) {
-    commandEncoder->setRenderPipelineState(renderPSO.get());
-    commandEncoder->setVertexBuffer(vertexBuffer.get(), 0, 0);
-    MTL::PrimitiveType primitiveType = MTL::PrimitiveTypeTriangle;
-    NS::UInteger vertexStart         = 0;
-    NS::UInteger vertexCount         = 3;
-    commandEncoder->drawPrimitives(primitiveType, vertexStart, vertexCount);
+    const NSPtr<MTL::RenderCommandEncoder> &command_encoder) {
+    command_encoder->setRenderPipelineState(render_pso_.get());
+    command_encoder->setVertexBuffer(vertex_buffer_.get(), 0, 0);
+    const MTL::PrimitiveType primitive_type = MTL::PrimitiveTypeTriangle;
+    const NS::UInteger vertex_start         = 0;
+    const NS::UInteger vertex_count         = 3;
+    command_encoder->drawPrimitives(primitive_type, vertex_start, vertex_count);
 }

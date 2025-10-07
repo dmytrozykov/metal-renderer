@@ -26,5 +26,5 @@ public:
     void AddMetalLayer(const NSPtr<CA::MetalLayer> &layer) const noexcept;
 
 private:
-    GLFWwindow *handle = nullptr;
+    GLFWwindow *handle_ = nullptr;
 };

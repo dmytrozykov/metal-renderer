@@ -32,21 +32,21 @@ private:
     void Render();
     void SendRenderCommand();
     void EncodeRenderCommand(
-        const NSPtr<MTL::RenderCommandEncoder> &commandEncoder);
+        const NSPtr<MTL::RenderCommandEncoder> &command_encoder);
 
     NSPtr<MTL::Function> LoadShader(const std::string &title) noexcept;
 
-    GLFWContext glfwContext;
-    std::unique_ptr<Window> window;
+    GLFWContext glfw_context_;
+    std::unique_ptr<Window> window_;
 
-    NSPtr<MTL::Device> device;
-    NSPtr<CA::MetalLayer> layer;
+    NSPtr<MTL::Device> device_;
+    NSPtr<CA::MetalLayer> layer_;
 
-    NSPtr<CA::MetalDrawable> drawable;
+    NSPtr<CA::MetalDrawable> drawable_;
 
-    NSPtr<MTL::Library> defaultLibrary;
-    NSPtr<MTL::CommandQueue> commandQueue;
-    NSPtr<MTL::CommandBuffer> commandBuffer;
-    NSPtr<MTL::RenderPipelineState> renderPSO;
-    NSPtr<MTL::Buffer> vertexBuffer;
+    NSPtr<MTL::Library> default_library_;
+    NSPtr<MTL::CommandQueue> command_queue_;
+    NSPtr<MTL::CommandBuffer> command_buffer_;
+    NSPtr<MTL::RenderPipelineState> render_pso_;
+    NSPtr<MTL::Buffer> vertex_buffer_;
 };

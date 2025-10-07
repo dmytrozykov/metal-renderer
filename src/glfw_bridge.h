@@ -7,5 +7,5 @@ class MetalLayer;
 }
 
 namespace GLFWBridge {
-void addLayer(GLFWwindow *window, CA::MetalLayer *layer) noexcept;
+void add_layer(GLFWwindow *window, CA::MetalLayer *layer) noexcept;
 }
