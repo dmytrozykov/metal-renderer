@@ -1,0 +1,42 @@
+# macOS files
+.DS_Store
+
+# Binary files
+*.o
+*.obj
+*.dylib
+*.a
+*.exe
+*.dll
+*.so
+*.lib
+*.pdb
+*.idb
+*.ilk
+*.exp
+*.suo
+
+
+# Product folders
+build/
+bin/
+lib/
+cmake-build-*/
+
+# IDE artifacts
+.vscode/
+.vs/
+.idea/
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# log files
+*.log
+
+CMakeUserPresets.json

@@ -1,0 +1,379 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE1A02F02E94F1A00083E243 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1A02EF2E94F1A00083E243 /* Metal.framework */; };
+		CE1A02F22E94F1A50083E243 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1A02F12E94F1A40083E243 /* QuartzCore.framework */; };
+		CE1A02F42E94F1B50083E243 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1A02F32E94F1B50083E243 /* Foundation.framework */; };
+		CE1A04C02E94F4000083E243 /* libglfw.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1A04BF2E94F4000083E243 /* libglfw.3.dylib */; };
+		CE1A04C12E94F4070083E243 /* libglfw.3.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = CE1A04BF2E94F4000083E243 /* libglfw.3.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CE1A04BD2E94F3310083E243 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CE1A04C12E94F4070083E243 /* libglfw.3.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CE1AFD412E94EEFB0083E243 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CE1A02E92E94F09E0083E243 /* .clang-format */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".clang-format"; sourceTree = "<group>"; };
+		CE1A02EA2E94F0AA0083E243 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CE1A02EC2E94F1320083E243 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		CE1A02EF2E94F1A00083E243 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		CE1A02F12E94F1A40083E243 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CE1A02F32E94F1B50083E243 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CE1A04BF2E94F4000083E243 /* libglfw.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.dylib; path = "third_party/glfw-3.4/lib/libglfw.3.dylib"; sourceTree = "<group>"; };
+		CE1AFD432E94EEFB0083E243 /* MetalRenderer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MetalRenderer; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CE1AFD452E94EEFB0083E243 /* src */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = src;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE1AFD402E94EEFB0083E243 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE1A04C02E94F4000083E243 /* libglfw.3.dylib in Frameworks */,
+				CE1A02F22E94F1A50083E243 /* QuartzCore.framework in Frameworks */,
+				CE1A02F42E94F1B50083E243 /* Foundation.framework in Frameworks */,
+				CE1A02F02E94F1A00083E243 /* Metal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE1A02EE2E94F1A00083E243 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE1A04BF2E94F4000083E243 /* libglfw.3.dylib */,
+				CE1A02F32E94F1B50083E243 /* Foundation.framework */,
+				CE1A02F12E94F1A40083E243 /* QuartzCore.framework */,
+				CE1A02EF2E94F1A00083E243 /* Metal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE1AFD3A2E94EEFB0083E243 = {
+			isa = PBXGroup;
+			children = (
+				CE1AFD452E94EEFB0083E243 /* src */,
+				CE1AFD442E94EEFB0083E243 /* Products */,
+				CE1A02E92E94F09E0083E243 /* .clang-format */,
+				CE1A02EA2E94F0AA0083E243 /* README.md */,
+				CE1A02EC2E94F1320083E243 /* LICENSE */,
+				CE1A02EE2E94F1A00083E243 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CE1AFD442E94EEFB0083E243 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE1AFD432E94EEFB0083E243 /* MetalRenderer */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE1AFD422E94EEFB0083E243 /* MetalRenderer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE1AFD4A2E94EEFB0083E243 /* Build configuration list for PBXNativeTarget "MetalRenderer" */;
+			buildPhases = (
+				CE1A02EB2E94F1060083E243 /* Clang Format */,
+				CE1AFD3F2E94EEFB0083E243 /* Sources */,
+				CE1AFD402E94EEFB0083E243 /* Frameworks */,
+				CE1AFD412E94EEFB0083E243 /* CopyFiles */,
+				CE1A04BD2E94F3310083E243 /* Embed Libraries */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CE1AFD452E94EEFB0083E243 /* src */,
+			);
+			name = MetalRenderer;
+			packageProductDependencies = (
+			);
+			productName = MetalRenderer;
+			productReference = CE1AFD432E94EEFB0083E243 /* MetalRenderer */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE1AFD3B2E94EEFB0083E243 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					CE1AFD422E94EEFB0083E243 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+				};
+			};
+			buildConfigurationList = CE1AFD3E2E94EEFB0083E243 /* Build configuration list for PBXProject "MetalRenderer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE1AFD3A2E94EEFB0083E243;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CE1AFD442E94EEFB0083E243 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE1AFD422E94EEFB0083E243 /* MetalRenderer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CE1A02EB2E94F1060083E243 /* Clang Format */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Clang Format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/bash\nset -e\n\necho \"Running clang-format on source files...\"\n\nDIR=\"${SRCROOT}/src\"\n\nfind \"$DIR\" \\( \\\n        -name \"*.c\" -o \\\n        -name \"*.h\" -o \\\n        -name \"*.cpp\" -o \\\n        -name \"*.hpp\" -o \\\n        -name \"*.cc\" -o \\\n        -name \"*.hh\" -o \\\n        -name \"*.m\" -o \\\n        -name \"*.mm\" \\\n\\) -exec clang-format -i {} +\n\necho \"✅ clang-format completed.\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE1AFD3F2E94EEFB0083E243 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CE1AFD482E94EEFB0083E243 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		CE1AFD492E94EEFB0083E243 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		CE1AFD4B2E94EEFB0083E243 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/third_party/metal-cpp",
+					"$(PROJECT_DIR)/third_party/glfw-3.4/include",
+					"$(PROJECT_DIR)/third_party/glm",
+					"$(PROJECT_DIR)/third_party/stb_image",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/third_party/glfw-3.4/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_CFLAGS = "-DGLFW_INCLUDE_NONE";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CE1AFD4C2E94EEFB0083E243 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/third_party/metal-cpp",
+					"$(PROJECT_DIR)/third_party/glfw-3.4/include",
+					"$(PROJECT_DIR)/third_party/glm",
+					"$(PROJECT_DIR)/third_party/stb_image",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/third_party/glfw-3.4/lib",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				OTHER_CFLAGS = "-DGLFW_INCLUDE_NONE";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE1AFD3E2E94EEFB0083E243 /* Build configuration list for PBXProject "MetalRenderer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE1AFD482E94EEFB0083E243 /* Debug */,
+				CE1AFD492E94EEFB0083E243 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE1AFD4A2E94EEFB0083E243 /* Build configuration list for PBXNativeTarget "MetalRenderer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE1AFD4B2E94EEFB0083E243 /* Debug */,
+				CE1AFD4C2E94EEFB0083E243 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = CE1AFD3B2E94EEFB0083E243 /* Project object */;
+}
